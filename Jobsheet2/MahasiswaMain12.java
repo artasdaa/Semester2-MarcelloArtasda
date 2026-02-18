@@ -1,7 +1,8 @@
 package Jobsheet2;
 
 public class MahasiswaMain12 {
-     public static void main(String[] args) {
+
+    public static void main(String[] args) {
 
         Mahasiswa12 mhs1 = new Mahasiswa12();
 
@@ -11,13 +12,15 @@ public class MahasiswaMain12 {
         mhs1.ipk = 3.55;
 
         mhs1.tampilkanInformasi();
-
-        System.out.println("\nSetelah perubahan:");
-
         mhs1.ubahKelas("SI 2K");
         mhs1.updateIpk(3.60);
-
         mhs1.tampilkanInformasi();
-        System.out.println("Nilai Kinerja: " + mhs1.nilaiKinerja());
+
+        System.out.println();
+
+        Mahasiswa12 mhs2 = new Mahasiswa12("Annisa Nabila", "2141720160", 3.25, "TI 2L");
+
+        mhs2.updateIpk(3.30);
+        mhs2.tampilkanInformasi();
     }
 }
