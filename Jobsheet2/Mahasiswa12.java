@@ -1,9 +1,21 @@
 package Jobsheet2;
+
 public class Mahasiswa12 {
+
     String nim;
     String nama;
     String kelas;
     double ipk;
+
+    public Mahasiswa12() {
+    }
+
+    public Mahasiswa12(String nama, String nim, double ipk, String kelas) {
+        this.nama = nama;
+        this.nim = nim;
+        this.ipk = ipk;
+        this.kelas = kelas;
+    }
 
     void tampilkanInformasi() {
         System.out.println("Nama  : " + nama);
@@ -17,11 +29,11 @@ public class Mahasiswa12 {
     }
 
     void updateIpk(double ipkBaru) {
-    if (ipkBaru >= 0.0 && ipkBaru <= 4.0) {
-        ipk = ipkBaru;
-    } else {
-        System.out.println("IPK tidak valid. Harus antara 0.0 dan 4.0");
-    }
+        if (ipkBaru >= 0.0 && ipkBaru <= 4.0) {
+            ipk = ipkBaru;
+        } else {
+            System.out.println("IPK tidak valid. Harus antara 0.0 dan 4.0");
+        }
     }
 
     String nilaiKinerja() {
