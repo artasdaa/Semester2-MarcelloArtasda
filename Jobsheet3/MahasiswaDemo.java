@@ -1,4 +1,5 @@
 package Jobsheet3;
+
 import java.util.Scanner;
 
 class Mahasiswa {
@@ -6,6 +7,14 @@ class Mahasiswa {
     public String nama;
     public String kelas;
     public float ipk;
+
+    public void cetakInfo() {
+        System.out.println("NIM   : " + nim);
+        System.out.println("Nama  : " + nama);
+        System.out.println("Kelas : " + kelas);
+        System.out.println("IPK   : " + ipk);
+        System.out.println("----------------------------------");
+    }
 }
 
 public class MahasiswaDemo {
@@ -38,11 +47,7 @@ public class MahasiswaDemo {
         System.out.println("\n===== DATA MAHASISWA =====");
         for (int i = 0; i < 3; i++) {
             System.out.println("Data Mahasiswa ke-" + (i + 1));
-            System.out.println("NIM   : " + arrayOfMahasiswa[i].nim);
-            System.out.println("Nama  : " + arrayOfMahasiswa[i].nama);
-            System.out.println("Kelas : " + arrayOfMahasiswa[i].kelas);
-            System.out.println("IPK   : " + arrayOfMahasiswa[i].ipk);
-            System.out.println("----------------------------------");
+            arrayOfMahasiswa[i].cetakInfo();
         }
 
         sc.close();
