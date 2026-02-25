@@ -52,41 +52,22 @@ public class MatakuliahDemo {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        Matakuliah[] arrayOfMatakuliah = new Matakuliah[3];
 
-        String kode, nama, dummy;
-        int sks, jumlahJam;
+        System.out.print("Masukkan jumlah Matakuliah: ");
+        int jumlah = Integer.parseInt(sc.nextLine());
 
-        for (int i = 0; i < 3; i++) {
-            System.out.println("Masukkan Data Matakuliah ke-" + (i + 1));
+        Matakuliah[] arrayOfMatakuliah = new Matakuliah[jumlah];
 
-            System.out.print("Kode       : ");
-            kode = sc.nextLine();
-
-            System.out.print("Nama       : ");
-            nama = sc.nextLine();
-
-            System.out.print("SKS        : ");
-            dummy = sc.nextLine();
-            sks = Integer.parseInt(dummy);
-
-            System.out.print("Jumlah Jam : ");
-            dummy = sc.nextLine();
-            jumlahJam = Integer.parseInt(dummy);
-
-            System.out.println("----------------------------------");
-
-            arrayOfMatakuliah[i] = new Matakuliah(kode, nama, sks, jumlahJam);
+        for (int i = 0; i < jumlah; i++) {
+            System.out.println("\nMasukkan Data Matakuliah ke-" + (i + 1));
+            arrayOfMatakuliah[i] = new Matakuliah();
+            arrayOfMatakuliah[i].tambahData();
         }
 
         System.out.println("\n===== DATA MATAKULIAH =====");
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < jumlah; i++) {
             System.out.println("Data Matakuliah ke-" + (i + 1));
-            System.out.println("Kode       : " + arrayOfMatakuliah[i].kode);
-            System.out.println("Nama       : " + arrayOfMatakuliah[i].nama);
-            System.out.println("SKS        : " + arrayOfMatakuliah[i].sks);
-            System.out.println("Jumlah Jam : " + arrayOfMatakuliah[i].jumlahJam);
-            System.out.println("----------------------------------");
+            arrayOfMatakuliah[i].cetakInfo();
         }
 
         sc.close();
