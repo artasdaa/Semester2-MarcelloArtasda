@@ -1,49 +1,50 @@
 package Praktikum05;
 
 public class DataDosen12 {
-    Dosen12[] dataDosen = new Dosen12[10];
-    int idx = 0;
+    Dosen12[] listDsn = new Dosen12[100];
+    int idx;
 
-    void tambah(Dosen12 dsn) {
-        if (idx < dataDosen.length) {
-            dataDosen[idx] = dsn;
+    void tambah(Dosen12 d) {
+        if (idx < listDsn.length) {
+            listDsn[idx] = d;
             idx++;
         } else {
-            System.out.println("Data sudah penuh!");
+            System.out.println("Data penuh!");
         }
     }
 
     void tampil() {
         for (int i = 0; i < idx; i++) {
-            dataDosen[i].tampil();
+            listDsn[i].tampil();
+            System.out.println("-------------------");
         }
     }
 
-    // Menggunakan Bubble Sort (Ascending berdasarkan Usia)
-    void sortingASC() {
+    // ASC (termuda → tertua) - Bubble Sort
+    void bubbleSort() {
         for (int i = 0; i < idx - 1; i++) {
             for (int j = 1; j < idx - i; j++) {
-                if (dataDosen[j].usia < dataDosen[j - 1].usia) {
-                    Dosen12 temp = dataDosen[j];
-                    dataDosen[j] = dataDosen[j - 1];
-                    dataDosen[j - 1] = temp;
+                if (listDsn[j].usia < listDsn[j - 1].usia) {
+                    Dosen12 tmp = listDsn[j];
+                    listDsn[j] = listDsn[j - 1];
+                    listDsn[j - 1] = tmp;
                 }
             }
         }
     }
 
-    // Menggunakan Selection Sort (Descending berdasarkan Usia)
-    void sortingDSC() {
+    // DESC (tertua → termuda) - Selection Sort
+    void selectionSort() {
         for (int i = 0; i < idx - 1; i++) {
-            int maxIdx = i;
+            int max = i;
             for (int j = i + 1; j < idx; j++) {
-                if (dataDosen[j].usia > dataDosen[maxIdx].usia) {
-                    maxIdx = j;
+                if (listDsn[j].usia > listDsn[max].usia) {
+                    max = j;
                 }
             }
-            Dosen12 temp = dataDosen[maxIdx];
-            dataDosen[maxIdx] = dataDosen[i];
-            dataDosen[i] = temp;
+            Dosen12 tmp = listDsn[max];
+            listDsn[max] = listDsn[i];
+            listDsn[i] = tmp;
         }
     }
 }

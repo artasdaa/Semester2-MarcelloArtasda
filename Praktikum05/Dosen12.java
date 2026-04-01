@@ -1,21 +1,16 @@
 package Praktikum05;
-    
+
 public class Dosen12 {
-    String kode;
-    String nama;
-    boolean jenisKelamin; 
+    String nidn, nama;
     int usia;
 
-    Dosen12(String kd, String name, boolean jk, int age) {
-        this.kode = kd;
-        this.nama = name;
-        this.jenisKelamin = jk;
-        this.usia = age;
+    Dosen12(String nidn, String nama, int usia) {
+        this.nidn = nidn;
+        this.nama = nama;
+        this.usia = usia;
     }
 
     void tampil() {
-        String jk = (jenisKelamin) ? "Laki-laki" : "Perempuan";
-        System.out.println("Kode: " + kode + " | Nama: " + nama + 
-                           " | Gender: " + jk + " | Usia: " + usia);
+        System.out.println(nidn + " | " + nama + " | " + usia);
     }
 }
