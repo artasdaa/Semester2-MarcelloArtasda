@@ -50,10 +50,12 @@ public class MahasiswaBerprestasi12 {
     for (int i = 1; i < idx; i++) {
         Mahasiswa12 key = listMhs[i];
         int j = i - 1;
-        while (j >= 0 && listMhs[j].ipk > key.ipk) {
+
+        while (j >= 0 && listMhs[j].ipk < key.ipk) {
             listMhs[j + 1] = listMhs[j];
             j--;
         }
+
         listMhs[j + 1] = key;
     }
 }
