@@ -39,6 +39,10 @@ public class MahasiswaDemo12 {
         System.out.println("\nData setelah sorting (IPK DESC):");
         list.tampil();
 
+        System.out.println("\nData yang sudah terurut menggunakan SELECTION SORT (ASC):");
+        list.selectionSort();
+        list.tampil();
+
         sc.close();
     }
 }
