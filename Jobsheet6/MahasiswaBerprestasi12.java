@@ -1,8 +1,12 @@
 package Jobsheet6;
 
 public class MahasiswaBerprestasi12 {
-    Mahasiswa[] listMhs = new Mahasiswa[5];
+    Mahasiswa[] listMhs;
     int idx;
+
+    MahasiswaBerprestasi12(int kapasitas) {
+    listMhs = new Mahasiswa[kapasitas];
+}
 
     void tambah(Mahasiswa m) {
         if (idx < listMhs.length) {
@@ -30,7 +34,6 @@ public class MahasiswaBerprestasi12 {
         return posisi;
     }
 
-    // tampil posisi
     void tampilPosisi(double x, int pos) {
         if (pos != -1) {
             System.out.println("Data mahasiswa dengan IPK " + x + " ditemukan pada indeks " + pos);
@@ -39,7 +42,6 @@ public class MahasiswaBerprestasi12 {
         }
     }
 
-    // tampil data
     void tampilDataSearch(double x, int pos) {
         if (pos != -1) {
             System.out.println("NIM   : " + listMhs[pos].nim);
@@ -50,4 +52,22 @@ public class MahasiswaBerprestasi12 {
             System.out.println("Data tidak ditemukan");
         }
     }
+
+    int findBinarySearch(double cari, int left, int right) {
+    int mid;
+
+    if (right >= left) {
+        mid = (left + right) / 2;
+
+        if (cari == listMhs[mid].ipk) {
+            return mid;
+        } else if (listMhs[mid].ipk > cari) {
+            return findBinarySearch(cari, left, mid - 1);
+        } else {
+            return findBinarySearch(cari, mid + 1, right);
+        }
+    }
+
+    return -1;
+}
 }

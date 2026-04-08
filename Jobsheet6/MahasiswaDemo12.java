@@ -5,10 +5,13 @@ import java.util.Scanner;
 public class MahasiswaDemo12 {
     public static void main(String[] args) {
 
-        MahasiswaBerprestasi12 list = new MahasiswaBerprestasi12();
         Scanner sc = new Scanner(System.in);
 
-        int jumMhs = 5;
+        System.out.print("Masukkan jumlah mahasiswa: ");
+        int jumMhs = sc.nextInt();
+        sc.nextLine();
+
+        MahasiswaBerprestasi12 list = new MahasiswaBerprestasi12(jumMhs);
 
         for (int i = 0; i < jumMhs; i++) {
             System.out.println("Masukkan Data Mahasiswa ke-" + (i + 1));
@@ -37,9 +40,9 @@ public class MahasiswaDemo12 {
         System.out.print("Masukkan IPK yang dicari: ");
         double cari = sc.nextDouble();
 
-        System.out.println("Menggunakan Sequential Search");
+        System.out.println("Menggunakan Binary Search");
 
-        int posisi = list.sequentialSearching(cari);
+        int posisi = list.findBinarySearch(cari, 0, list.idx - 1);
         list.tampilPosisi(cari, posisi);
         list.tampilDataSearch(cari, posisi);
     }
