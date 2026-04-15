@@ -2,23 +2,23 @@ package CM1;
 
 import java.util.Scanner;
 public class Main {
-    static void insertionSort(Peminjaman[] data) {
+    static void insertionSort(Peminjaman[] data) { //Method insertionSort()
         for (int i = 1; i < data.length; i++) {
             Peminjaman key = data[i];
             int j = i - 1;
 
-            while (j >= 0 && data[j].denda < key.denda) {
+            while (j >= 0 && data[j].denda < key.denda) { //Diurutkan dari denda terbesar ke terkecil (descending)
                 data[j + 1] = data[j];
                 j--;
-            }
+            }   
             data[j + 1] = key;
         }
     }
 
-    static void sortByNIM(Peminjaman[] data) {
+    static void sortByNIM(Peminjaman[] data) { //Method sortByNIM() menggunakan bubble short
         for (int i = 0; i < data.length - 1; i++) {
             for (int j = 0; j < data.length - i - 1; j++) {
-                if (data[j].mhs.nim.compareTo(data[j + 1].mhs.nim) > 0) {
+                if (data[j].mhs.nim.compareTo(data[j + 1].mhs.nim) > 0) { //Data diurutkan ascending (kecil → besar) proses binary search
                     Peminjaman temp = data[j];
                     data[j] = data[j + 1];
                     data[j + 1] = temp;
@@ -27,27 +27,35 @@ public class Main {
         }
     }
 
-    static void binarySearch(Peminjaman[] data, String nim) {
+    static void binarySearch(Peminjaman[] data, String nim) { //Method binarySearch()
+        Peminjaman[] copy = new Peminjaman [data.length];
+        for (int i = 0; i < data.length; i++) {
+            copy [i] = data[i];
+        }
+
+        sortByNIM(copy);
+
         int left = 0, right = data.length - 1;
         boolean ketemu = false;
 
         while (left <= right) {
             int mid = (left + right) / 2;
 
-            if (data[mid].mhs.nim.equals(nim)) {
+            if (copy[mid].mhs.nim.equals(nim)) {
+                System.out.println("Data ditemukan:");
                 int i = mid;
-                while (i >= 0 && data[i].mhs.nim.equals(nim)) {
-                    data[i].tampil();
+                while (i >= 0 && copy[i].mhs.nim.equals(nim)) { //Bisa menampilkan lebih dari 1 data jika NIM sama
+                    copy[i].tampil();
                     i--;
                 }
                 i = mid + 1;
-                while (i < data.length && data[i].mhs.nim.equals(nim)) {
-                    data[i].tampil();
+                while (i < copy.length && copy[i].mhs.nim.equals(nim)) {
+                    copy[i].tampil();
                     i++;
                 }
                 ketemu = true;
                 break;
-            } else if (data[mid].mhs.nim.compareTo(nim) < 0) {
+            } else if (copy[mid].mhs.nim.compareTo(nim) < 0) {
                 left = mid + 1;
             } else {
                 right = mid - 1;
@@ -60,8 +68,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in); //menerima input user
 
+        //Data Awal (Array Object)
         Mahasiswa[] mhs = {
             new Mahasiswa("22001", "Andi", "Teknik Informatika"),
             new Mahasiswa("22002", "Budi", "Teknik Informatika"),
@@ -91,6 +100,8 @@ public class Main {
             System.out.println("3. Tampilkan Peminjaman");
             System.out.println("4. Urutkan Berdasarkan Denda (Insertion Sort)");
             System.out.println("5. Cari Berdasarkan NIM (Binary Search)");
+            System.out.println("6. Tambah Peminjaman");
+            System.out.println("7. Tampilkan Statistik");
             System.out.println("0. Keluar");
             System.out.print("Pilih: ");
             pilih = sc.nextInt();
@@ -109,7 +120,7 @@ public class Main {
                     break;
 
                 case 4:
-                    insertionSort(pinjam);
+                    insertionSort(pinjam); //Mengurutkan denda terbesar ke terkecil
                     System.out.println("Setelah diurutkan (denda terbesar):");
                     for (Peminjaman p : pinjam) p.tampil();
                     break;
@@ -120,10 +131,84 @@ public class Main {
                     String cari = sc.next();
                     binarySearch(pinjam, cari);
                     break;
+
+                case 6:
+                    pinjam = tambahPeminjaman(pinjam, mhs, buku, sc);
+                    break;
+
+                case 7:
+                    tampilStatistik(pinjam);
+                    break;  
             }
 
         } while (pilih != 0);
 
         sc.close();
     }
+
+    static Peminjaman[] tambahPeminjaman(Peminjaman[] data, Mahasiswa[] mhs, Buku[] buku, Scanner sc) {
+        System.out.print ("Masukkan NIM:");
+        String nim = sc.next();
+
+        Mahasiswa mhsCari = null;
+        for (Mahasiswa m : mhs) {
+            if (m.nim.equals(nim)) {
+                mhsCari = m;
+                break;
+            }
+        }
+        if (mhsCari == null) {
+            System.out.println("NIM tidak ditemukan");
+            return data;
+        }
+
+        System.out.print("Masukkan Kode Buku:");
+        String kode = sc.next();
+
+        Buku bukuCari = null;
+        for (Buku b : buku) {
+            if (b.kodeBuku.equals(kode)) {
+                bukuCari = b;
+                break;
+            }
+        }
+        if (bukuCari == null) {
+            System.out.println("Buku tidak ditemukan:");
+            return data;
+        }
+
+        System.out.print("Masukkan Lama Pinjam (hari):");
+        int lama = sc.nextInt();
+
+        Peminjaman[] baru = new Peminjaman[data.length + 1];
+        for (int i = 0; i < data.length; i++) {
+            baru[i] = data[i];
+        }
+
+        baru[data.length] = new Peminjaman(mhsCari, bukuCari, lama);
+
+        System.out.println("Peminjaman berhasil ditambahkan!");
+        return baru;
+    }
+
+    static void tampilStatistik(Peminjaman[] data) {
+        int totalDenda = 0;
+        int terlambat = 0;
+        int tepat = 0;
+
+        for (Peminjaman p : data) {
+            totalDenda += p.denda;
+
+            if (p.terlambat > 0) {
+                terlambat++;
+            }else {
+                tepat++;
+            }
+        }
+        System.out.println("=== STATISTIK PEMINJAMAN");
+        System.out.println("Total Denda: " + totalDenda);
+        System.out.println("Peminjaman Terlambat: " + terlambat);
+        System.out.println("Peminjaman Tepat Waktu: " + tepat);
+    }
+
 }
