@@ -67,4 +67,22 @@ public class StackTugasMahasiswa12 {
             System.out.println(stack[i].nama + "\t" + stack[i].nim + "\t" + stack[i].kelas + "\t" + stack[i].nilai);
         }
     }
+
+     public String konversiDesimalKeBiner(int nilai) {
+        int[] biner = new int[32];
+        int idx = -1;
+
+        while (nilai > 0) {
+            idx++;
+            biner[idx] = nilai % 2;
+            nilai = nilai / 2;
+        }
+
+        String hasil = "";
+        for (int i = idx; i >= 0; i--) {
+            hasil += biner[i];
+        }
+
+        return hasil;
+    }
 }

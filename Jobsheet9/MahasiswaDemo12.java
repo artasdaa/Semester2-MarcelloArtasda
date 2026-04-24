@@ -42,7 +42,10 @@ public class MahasiswaDemo12 {
                         System.out.print("Masukkan nilai (0-100): ");
                         int nilai = scan.nextInt();
                         dinilai.tugasDinilai(nilai);
-                        System.out.println("Nilai tugas " + dinilai.nama + " adalah " + nilai);
+                        System.out.printf("Nilai Tugas %s adalah %d\n", dinilai.nama, nilai);
+
+                        String biner = stack.konversiDesimalKeBiner(nilai);
+                        System.out.println("Nilai Biner Tugas: " + biner);
                     }
                     break;
 
@@ -54,7 +57,7 @@ public class MahasiswaDemo12 {
                     break;
 
                 case 4:
-                    System.out.println("Daftar semua tugas:");
+                    System.out.println("Daftar semua tugas");
                     stack.print();
                     break;
 
