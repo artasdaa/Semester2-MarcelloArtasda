@@ -12,19 +12,11 @@ public class StackTugasMahasiswa12 {
     }
 
     public boolean isFull() {
-        if (top == size - 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return top == size - 1;
     }
 
     public boolean isEmpty() {
-        if (top == -1) {
-            return true;
-        } else {
-            return false;
-        }
+        return top == -1;
     }
 
     public void push(Mahasiswa12 mhs) {
@@ -56,15 +48,23 @@ public class StackTugasMahasiswa12 {
         }
     }
 
+    public Mahasiswa12 peekBottom() {
+        if (!isEmpty()) {
+            return stack[0];
+        } else {
+            System.out.println("Stack kosong!");
+            return null;
+        }
+    }
+
+    public int count() {
+        return top + 1;
+    }
+
     public void print() {
         System.out.println("Nama\tNIM\tKelas\tNilai");
         for (int i = top; i >= 0; i--) {
-            System.out.println(
-                stack[i].nama + "\t" +
-                stack[i].nim + "\t" +
-                stack[i].kelas + "\t" +
-                stack[i].nilai
-            );
+            System.out.println(stack[i].nama + "\t" + stack[i].nim + "\t" + stack[i].kelas + "\t" + stack[i].nilai);
         }
     }
 }
