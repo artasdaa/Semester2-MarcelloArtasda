@@ -17,6 +17,9 @@ public class LayananAkademikSIAKAD {
             System.out.println("4. Lihat Semua");
             System.out.println("5. Jumlah Antrian");
             System.out.println("6. Lihat Terakhir");
+            System.out.println("7. Kosongkan Antrian");
+            System.out.println("8. Panggil 2 Mahasiswa");
+            System.out.println("9. Lihat 2 Terdepan");
             System.out.println("0. Keluar");
             System.out.print("Pilih: ");
             pilihan = sc.nextInt();
@@ -60,7 +63,31 @@ public class LayananAkademikSIAKAD {
                 case 6:
                     antrian.lihatAkhir();
                     break;
-                    
+                
+                case 7:
+                    antrian = new AntrianLayanan(5); // Reset antrian
+                    System.out.println("Antrian dikosongkan.");
+                    break;
+
+                case 8:
+                    System.out.println("Memanggil 2 mahasiswa...");
+
+                    for (int i = 0; i < 2; i++) {
+                        Mahasiswa m = antrian.layaniMahasiswa();
+                        if (m != null) {
+                            System.out.print("Dilayani: ");
+                            m.tampilkanData();
+                        } else {
+                            System.out.println("Antrian sudah kosong.");
+                            break;
+                        }
+                    }
+
+                case 9:
+                    System.out.println("Mahasiswa terdepan:");
+                    antrian.lihat2Terdepan();
+                    break;
+
                 case 0:
                     System.out.println("Terima kasih.");
                     break;

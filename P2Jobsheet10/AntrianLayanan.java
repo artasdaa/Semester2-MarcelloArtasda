@@ -77,4 +77,33 @@ public class AntrianLayanan {
             data[rear].tampilkanData();
         }
     }
+
+    public void kosongkan() {
+    front = 0;
+    rear = -1;
+    size = 0;
+    System.out.println("Antrian dikosongkan.");
+    }
+
+    public void panggil2() {
+        for (int i = 0; i < 2; i++) {
+            Mahasiswa m = layaniMahasiswa();
+            if (m != null) {
+                System.out.print("Dipanggil: ");
+                m.tampilkanData();
+            }
+        }
+    }
+
+    public void lihat2Terdepan() {
+        if (size == 0) {
+            System.out.println("Antrian kosong.");
+            return;
+        }
+
+        for (int i = 0; i < Math.min(2, size); i++) {
+            int index = (front + i) % max;
+            data[index].tampilkanData();
+        }
+    }
 }
