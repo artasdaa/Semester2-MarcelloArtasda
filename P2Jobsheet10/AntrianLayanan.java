@@ -68,7 +68,7 @@ public class AntrianLayanan {
         return size;
     }
 
-    // TAMBAHAN UNTUK PERTANYAAN
+    // TAMBAHAN UNTUK PERTANYAAN PERCOBAAN 2
     public void lihatAkhir() {
         if (isEmpty()) {
             System.out.println("Antrian kosong.");
