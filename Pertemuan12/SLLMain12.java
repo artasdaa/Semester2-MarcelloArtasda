@@ -37,6 +37,22 @@ public class SLLMain12 {
     }
 
     System.out.println("\n=== Hasil Linked List ===");
-    sll.print();
+sll.print();
+
+// akses index
+System.out.print("\ndata index 1 : ");
+sll.getData(0);
+
+// cari index
+int idx = sll.indexOf("Bimon");
+System.out.println("data mahasiswa an Bimon berada pada index : " + idx);
+
+// hapus pertama
+sll.removeFirst();
+sll.print();
+
+// hapus terakhir
+sll.removeLast();
+sll.print();
 }
 }
