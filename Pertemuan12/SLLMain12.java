@@ -32,27 +32,25 @@ public class SLLMain12 {
 
         Mahasiswa12 mhs = new Mahasiswa12(nim, nama, kelas, ipk);
 
-        // masukkan ke linked list
         sll.addLast(mhs);
     }
 
     System.out.println("\n=== Hasil Linked List ===");
-sll.print();
+    sll.print();
 
-// akses index
-System.out.print("\ndata index 1 : ");
-sll.getData(0);
+    // akses index
+    System.out.print("\ndata index 1 : ");
+    sll.getData(1);
 
-// cari index
-int idx = sll.indexOf("Bimon");
-System.out.println("data mahasiswa an Bimon berada pada index : " + idx);
+    System.out.println("data mahasiswa an Bimon berada pada index : " +sll.indexOf("Bimon"));
+    System.out.println();
 
-// hapus pertama
-sll.removeFirst();
-sll.print();
+    // hapus pertama
+    sll.removeFirst();
+    sll.print();
 
-// hapus terakhir
-sll.removeLast();
-sll.print();
-}
+    // hapus terakhir
+    sll.removeLast();
+    sll.print();
+    }
 }
